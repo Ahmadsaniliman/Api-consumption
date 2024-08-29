@@ -82,4 +82,28 @@ class Network {
       throw Exception('Something went wrong');
     }
   }
+
+  Future<List<Posts>> getPosts() async {
+    const url = 'https://jsonplaceholder.typicode.com/posts';
+    try {
+      final Response response = await http.get(
+        Uri.parse(
+          Uri.encodeFull(url),
+        ),
+      );
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final items =
+            (data as List).map((item) => Posts.fromMap(item)).toList();
+
+        return items;
+      } else {
+        throw Exception('something went wrong');
+      }
+    } catch (e) {
+      devtool.log(e.toString());
+      devtool.log('wrong');
+      throw Exception('Something went wrong');
+    }
+  }
 }

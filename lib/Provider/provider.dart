@@ -18,3 +18,9 @@ final photosProvider = FutureProvider(
     return Network().getPhotos();
   },
 );
+
+final postsProvider = FutureProvider(
+  (ref) {
+    return Network().getPosts();
+  },
+);

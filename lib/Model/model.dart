@@ -153,3 +153,39 @@ class Photos {
     );
   }
 }
+
+class Posts {
+  final int id;
+  final String title;
+  final String body;
+
+  Posts({
+    required this.id,
+    required this.title,
+    required this.body,
+  });
+
+  @override
+  String toString() => 'Post(id:$id, title:$title, body:$body)';
+
+  @override
+  bool operator ==(covariant Posts other) =>
+      id == other.id && title == other.title && body == other.body;
+
+  @override
+  int get hashCode => Object.hashAll(
+        [
+          id,
+          title,
+          body,
+        ],
+      );
+
+  factory Posts.fromMap(Map<String, dynamic> json) {
+    return Posts(
+      id: json['id'],
+      title: json['title'],
+      body: json['body'],
+    );
+  }
+}

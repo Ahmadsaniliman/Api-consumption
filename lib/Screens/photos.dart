@@ -40,34 +40,42 @@ class PhotosScreen extends ConsumerWidget {
                             ),
                             child: Image.network(photo.thumbnailUrl),
                           ),
-                          Container(
-                            height: 100,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Image.network(photo.imageUrl),
-                          ),
+                          // Container(
+                          //   height: 100,
+                          //   width: 100,
+                          //   decoration: BoxDecoration(
+                          //     border: Border.all(),
+                          //     borderRadius: BorderRadius.circular(10),
+                          //   ),
+                          //   child: Image.network(photo.imageUrl),
+                          // ),
                         ],
                       ),
                       const SizedBox(width: 30),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'albumId:  ${photo.albumId}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'albumId:  ${photo.albumId}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Id:  ${photo.id}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
+                            Text(
+                              'Id:  ${photo.id}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        ],
+                            Text(
+                              'tITLE:  ${photo.title}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),
