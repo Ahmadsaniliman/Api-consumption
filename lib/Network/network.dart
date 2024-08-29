@@ -106,4 +106,35 @@ class Network {
       throw Exception('Something went wrong');
     }
   }
+
+  Future<Posts> postPosts({
+    required String title,
+    required String body,
+  }) async {
+    const url = 'https://jsonplaceholder.typicode.com/posts';
+    final data = {
+      'title': title,
+      'body': body,
+    };
+    try {
+      final Response response = await http.post(
+        Uri.parse(
+          url,
+        ),
+        body: json.encode(data),
+      );
+      if (response.statusCode == 200) {
+        devtool.log('succesfully Post');
+        return Posts.fromMap(
+          json.decode(response.body),
+        );
+      } else {
+        throw Exception('something went wrong');
+      }
+    } catch (e) {
+    //   devtool.log(e.toString());
+    //   devtool.log('wrong');
+      throw Exception('Something went wrong');
+    }
+  }
 }
