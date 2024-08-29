@@ -61,3 +61,95 @@ class User {
         ],
       );
 }
+
+class Todos {
+  final int userId;
+  final int id;
+  final String title;
+  final bool completed;
+
+  Todos({
+    required this.userId,
+    required this.id,
+    required this.title,
+    required this.completed,
+  });
+
+  @override
+  String toString() =>
+      'Todo(userId:$userId, id:$id, title:$title, completed:$completed)';
+
+  @override
+  bool operator ==(covariant Todos other) =>
+      userId == other.userId &&
+      id == other.id &&
+      title == other.title &&
+      completed == other.completed;
+
+  @override
+  int get hashCode => Object.hashAll(
+        [
+          userId,
+          id,
+          title,
+          completed,
+        ],
+      );
+
+  factory Todos.fromMap(Map<String, dynamic> map) {
+    return Todos(
+      userId: map['userId'] as int,
+      id: map['id'] as int,
+      title: map['title'] as String,
+      completed: map['completed'] as bool,
+    );
+  }
+}
+
+class Photos {
+  final int albumId;
+  final int id;
+  final String title;
+  final dynamic imageUrl;
+  final String thumbnailUrl;
+
+  Photos({
+    required this.albumId,
+    required this.id,
+    required this.title,
+    required this.imageUrl,
+    required this.thumbnailUrl,
+  });
+
+  @override
+  String toString() =>
+      'Photos(albumId:$albumId, id:$id, title:$title, imageUrl:$imageUrl, thumbnailUrl:$thumbnailUrl)';
+
+  @override
+  bool operator ==(covariant Photos other) =>
+      albumId == other.albumId &&
+      id == other.id &&
+      imageUrl == other.imageUrl &&
+      thumbnailUrl == other.thumbnailUrl;
+
+  @override
+  int get hashCode => Object.hashAll(
+        [
+          albumId,
+          id,
+          title,
+          imageUrl,
+          thumbnailUrl,
+        ],
+      );
+
+  factory Photos.fromMap(Map<String, dynamic> map) {
+    return Photos(
+      albumId: map['albumId'] as int,
+      id: map['id'] as int,
+      title: map['title'] as String,
+      imageUrl: map['imageUrl'] as dynamic,
+      thumbnailUrl: map['thumbnailUrl'],
+    );
+  }
+}
