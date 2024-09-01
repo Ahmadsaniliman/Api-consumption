@@ -137,7 +137,7 @@ class PostDetails extends ConsumerWidget {
                 final body = titleController.text.trim();
                 await Network().postPosts(
                   title: title,
-                  body: body,
+                  body: body, userId: 1, id: 1,
                 );
               },
               child: Container(

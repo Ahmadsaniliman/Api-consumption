@@ -108,11 +108,15 @@ class Network {
   }
 
   Future<Posts> postPosts({
+    required int userId,
+    required int id,
     required String title,
     required String body,
   }) async {
     const url = 'https://jsonplaceholder.typicode.com/posts';
     final data = {
+        'userId': 1,
+        'id': 1,
       'title': title,
       'body': body,
     };
