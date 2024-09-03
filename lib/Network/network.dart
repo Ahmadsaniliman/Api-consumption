@@ -115,8 +115,8 @@ class Network {
   }) async {
     const url = 'https://jsonplaceholder.typicode.com/posts';
     final data = {
-        'userId': 1,
-        'id': 1,
+      'userId': 1,
+      'id': 1,
       'title': title,
       'body': body,
     };
@@ -127,7 +127,7 @@ class Network {
         ),
         body: json.encode(data),
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         devtool.log('succesfully Post');
         return Posts.fromMap(
           json.decode(response.body),
@@ -136,8 +136,8 @@ class Network {
         throw Exception('something went wrong');
       }
     } catch (e) {
-    //   devtool.log(e.toString());
-    //   devtool.log('wrong');
+      //   devtool.log(e.toString());
+      devtool.log(e.toString());
       throw Exception('Something went wrong');
     }
   }

@@ -155,11 +155,13 @@ class Photos {
 }
 
 class Posts {
-  final int id;
+  final dynamic userId;
+  final dynamic id;
   final String title;
   final String body;
 
   Posts({
+    required this.userId,
     required this.id,
     required this.title,
     required this.body,
@@ -170,6 +172,7 @@ class Posts {
 
   @override
   bool operator ==(covariant Posts other) =>
+      userId == other.userId ||
       id == other.id && title == other.title && body == other.body;
 
   @override
@@ -183,6 +186,7 @@ class Posts {
 
   factory Posts.fromMap(Map<String, dynamic> json) {
     return Posts(
+      userId: json['userIdd'],
       id: json['id'],
       title: json['title'],
       body: json['body'],
