@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jsonapiintergation/Network/network.dart';
-import 'package:jsonapiintergation/Provider/provider.dart';
+import 'package:jsonapiintergation/Json/Network/network.dart';
+import 'package:jsonapiintergation/Json/Provider/provider.dart';
 
 class PostScreen extends ConsumerWidget {
   const PostScreen({super.key});

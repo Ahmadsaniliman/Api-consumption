@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jsonapiintergation/Screens/post.dart';
+import 'package:jsonapiintergation/Json/Screens/post.dart';
+import 'package:jsonapiintergation/User/Screens/register_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const PostDetails(),
+        home: const Register(),
       ),
     );
   }

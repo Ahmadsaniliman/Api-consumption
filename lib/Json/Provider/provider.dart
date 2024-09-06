@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jsonapiintergation/Network/network.dart';
+import 'package:jsonapiintergation/Json/Network/network.dart';
 
 final networkProvider = FutureProvider(
   (ref) {

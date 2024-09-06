@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jsonapiintergation/Provider/provider.dart';
+import 'package:jsonapiintergation/Json/Provider/provider.dart';
 
 class PhotosScreen extends ConsumerWidget {
   const PhotosScreen({super.key});

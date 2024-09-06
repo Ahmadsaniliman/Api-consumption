@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'dart:developer' as devtool show log;
-import 'package:jsonapiintergation/Model/model.dart';
+import 'package:jsonapiintergation/Json/Model/model.dart';
 
 class Network {
   Future<List<User>> getUsers() async {
