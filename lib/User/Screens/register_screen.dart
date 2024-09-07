@@ -98,14 +98,14 @@ class Register extends ConsumerWidget {
               const SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
-                  final userName = usernameController.text.trim();
-                  final email = emailController.text.trim();
-                  final password = passwordController.text.trim();
-          
+                  final userName = usernameController.text;
+                  final email = emailController.text;
+                  final password = passwordController.text;
+
                   NetworkApi().registerUser(
                     username: userName,
                     email: email,
-                    password: password,
+                    gender: password,
                   );
                   devtool.log('succefull');
                 },
@@ -117,6 +117,198 @@ class Register extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(15)),
                   child: const Center(
                     child: Text('Register'),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class RegisterValidator extends StatefulWidget {
+  const RegisterValidator({super.key});
+
+  @override
+  State<RegisterValidator> createState() => _RegisterValidatorState();
+}
+
+class _RegisterValidatorState extends State<RegisterValidator> {
+
+    final bool hidePassword = true;
+  final  emailContr = TextEditingController();
+  final  passwordContr = TextEditingController();
+  final  numberContr = TextEditingController();
+  final  usernameContr = TextEditingController();
+  GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Validator'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 70),
+              const Icon(Icons.lock, size: 100),
+              const SizedBox(height: 50),
+              Form(
+                key: registerFormKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Email'),
+                    Container(
+                      height: 50,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: TextFormField(
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Email is required';
+                          }
+              
+                          final emailRegExp =
+                              RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                          if (!emailRegExp.hasMatch(value)) {
+                            return 'Invalid email address';
+                          }
+              
+                          return null;
+                        },
+                        controller: emailContr,
+                        decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            border: InputBorder.none,
+                            hintText: 'limanahmad@gmail.com'),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text('Password'),
+                    Container(
+                      height: 50,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: TextFormField(
+                        controller: passwordContr,
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Password is required';
+                          }
+              
+                          if (value.length < 7) {
+                            return 'password must be at leaset 7';
+                          }
+              
+                          if (!value.contains(
+                            RegExp(r'[A-Z]'),
+                          )) {
+                            return 'password must atleast contain one uppercase';
+                          }
+              
+                          if (!value.contains(
+                            RegExp(r'[0-9]'),
+                          )) {
+                            return 'password must atleast contain one number';
+                          }
+              
+                          if (!value.contains(
+                            RegExp(r'[!@£%^&*(),.?":{|<>}]'),
+                          )) {
+                            return 'password must atleast contain one special character';
+                          }
+              
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            border: InputBorder.none,
+                            hintText: 'Mgmhg1!'),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text('Number'),
+                    Container(
+                      height: 50,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: TextFormField(
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'password is required';
+                          }
+              
+                          final numRegExp = RegExp(r'^\d{10}$');
+              
+                          if (!numRegExp.hasMatch(value)) {
+                            return 'invalid phone number, 10 digit required';
+                          }
+              
+                          return null;
+                        },
+                        controller: numberContr,
+                        decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            border: InputBorder.none,
+                            hintText: '09087564323'),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text('Username'),
+                    Container(
+                      height: 50,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: TextFormField(
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'username cannot be empty';
+                          }
+              
+                          return null;
+                        },
+                        controller: usernameContr,
+                        decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            border: InputBorder.none,
+                            hintText: 'liman'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 25),
+              InkWell(
+                onTap: () {
+                   
+                },
+                child: Container(
+                  height: 50,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Center(
+                    child: Text('Enter'),
                   ),
                 ),
               ),

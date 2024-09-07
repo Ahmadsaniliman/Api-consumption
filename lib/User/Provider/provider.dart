@@ -5,6 +5,6 @@ final registerUserProvider = FutureProvider(
   (ref) => NetworkApi().registerUser(
     username: '',
     email: '',
-    password: '',
+    gender: '',
   ),
 );
