@@ -136,12 +136,12 @@ class RegisterValidator extends StatefulWidget {
 }
 
 class _RegisterValidatorState extends State<RegisterValidator> {
-
-    final bool hidePassword = true;
-  final  emailContr = TextEditingController();
-  final  passwordContr = TextEditingController();
-  final  numberContr = TextEditingController();
-  final  usernameContr = TextEditingController();
+  final hidePassword = true;
+  final privacyPolicy = false;
+  final emailContr = TextEditingController();
+  final passwordContr = TextEditingController();
+  final numberContr = TextEditingController();
+  final usernameContr = TextEditingController();
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
   @override
@@ -177,18 +177,19 @@ class _RegisterValidatorState extends State<RegisterValidator> {
                           if (value == null || value.isEmpty) {
                             return 'Email is required';
                           }
-              
+
                           final emailRegExp =
                               RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
                           if (!emailRegExp.hasMatch(value)) {
                             return 'Invalid email address';
                           }
-              
+
                           return null;
                         },
                         controller: emailContr,
                         decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             border: InputBorder.none,
                             hintText: 'limanahmad@gmail.com'),
                       ),
@@ -204,37 +205,43 @@ class _RegisterValidatorState extends State<RegisterValidator> {
                       ),
                       child: TextFormField(
                         controller: passwordContr,
+                        obscureText: hidePassword,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'Password is required';
                           }
-              
+
                           if (value.length < 7) {
                             return 'password must be at leaset 7';
                           }
-              
+
                           if (!value.contains(
                             RegExp(r'[A-Z]'),
                           )) {
                             return 'password must atleast contain one uppercase';
                           }
-              
+
                           if (!value.contains(
                             RegExp(r'[0-9]'),
                           )) {
                             return 'password must atleast contain one number';
                           }
-              
+
                           if (!value.contains(
                             RegExp(r'[!@£%^&*(),.?":{|<>}]'),
                           )) {
                             return 'password must atleast contain one special character';
                           }
-              
+
                           return null;
                         },
-                        decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                              onPressed: () => hidePassword == !hidePassword,
+                              icon: const Icon(Icons.visibility_off),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
                             border: InputBorder.none,
                             hintText: 'Mgmhg1!'),
                       ),
@@ -253,18 +260,19 @@ class _RegisterValidatorState extends State<RegisterValidator> {
                           if (value == null || value.isEmpty) {
                             return 'password is required';
                           }
-              
-                          final numRegExp = RegExp(r'^\d{10}$');
-              
+
+                          final numRegExp = RegExp(r'^\d{11}$');
+
                           if (!numRegExp.hasMatch(value)) {
-                            return 'invalid phone number, 10 digit required';
+                            return 'invalid phone number, 11 digit required';
                           }
-              
+
                           return null;
                         },
                         controller: numberContr,
                         decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             border: InputBorder.none,
                             hintText: '09087564323'),
                       ),
@@ -283,23 +291,35 @@ class _RegisterValidatorState extends State<RegisterValidator> {
                           if (value == null || value.isEmpty) {
                             return 'username cannot be empty';
                           }
-              
+
                           return null;
                         },
                         controller: usernameContr,
                         decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             border: InputBorder.none,
                             hintText: 'liman'),
                       ),
                     ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: privacyPolicy,
+                          onChanged: (value) {
+                            privacyPolicy == value;
+                          },
+                        ),
+                        const Text('I agree to privacy policy'),
+                      ],
+                    )
                   ],
                 ),
               ),
               const SizedBox(height: 25),
               InkWell(
                 onTap: () {
-                   
+                  if (registerFormKey.currentState!.validate()) return;
                 },
                 child: Container(
                   height: 50,
