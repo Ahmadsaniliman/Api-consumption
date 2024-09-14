@@ -319,7 +319,8 @@ class _RegisterValidatorState extends State<RegisterValidator> {
               const SizedBox(height: 25),
               InkWell(
                 onTap: () {
-                  if (registerFormKey.currentState!.validate()) return;
+                registerFormKey.currentState!.validate();
+                devtool.log('No Problem');
                 },
                 child: Container(
                   height: 50,
